@@ -1,0 +1,16 @@
+<header>
+    <nav class="navbar fixed-top navbar-dark bg-primary">
+        <a class="navbar-brand" [routerLink]="['/']">ToDo App</a>
+        <a class="navbar-brand" [routerLink]="['logoff']">Sair</a>
+    </nav>
+</header>
+
+<section>
+    <main class="container">
+        <router-outlet></router-outlet>
+    </main>
+</section>
+
+<footer class="mt-2 p-2 text-right text-monospace">
+    <a href="http://www.google.com">©Desenvolvido por R³</a>
+</footer>
