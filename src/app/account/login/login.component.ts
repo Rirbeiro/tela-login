@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Login } from 'src/app/login';
 import { AccountService } from '../shared/account.service';
 
 @Component({
@@ -9,10 +10,8 @@ import { AccountService } from '../shared/account.service';
 })
 export class LoginComponent implements OnInit {
 
-  login = {
-    email: '',
-    password: ''
-  }
+  login = new Login();
+  error: boolean;
 
   constructor(private accountService: AccountService, private router: Router) { }
 

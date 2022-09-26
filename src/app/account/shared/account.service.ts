@@ -1,23 +1,31 @@
+import { JsonPipe } from '@angular/common';
+import { HttpClient, JsonpInterceptor } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { resolve } from 'url';
+import { Account } from 'src/app/account';
+import { AppSettings } from 'src/app/appSettings';
+import { Login } from 'src/app/login';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  login(user: any) {
-    return new Promise((resolve) => {
-      window.localStorage.setItem('token', 'meu-token');
-      resolve(true);
-    });
+  async login(user: Login): Promise<boolean> {
+    const result = await this.http.get<Array<Login>>(`${AppSettings.API_ENDPOINT}/auth`).toPromise();
+
+    if (result.find(x => x.email === user.email) && result.find(x => x.password === user.password)) {
+      window.localStorage.setItem('token', 'my-token-mock');
+      return true;
+    }
+    return false;
   }
 
-  createAccount(account: any) {
-    return new Promise((resolve) => {
-      resolve(true);
-    });
+  async createAccount(account: any) {
+    return await this.http.post<Account>(`${AppSettings.API_ENDPOINT}/auth`, account).toPromise();
   }
+
+  getAuthorizationToken = () => window.localStorage.getItem('token');
+
 }

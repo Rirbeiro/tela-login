@@ -12,6 +12,8 @@ import { LoginComponent } from './account/login/login.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
 import { HomeComponent } from './layout/home/home.component';
 import { AuthenticationComponent } from './layout/authentication/authentication.component';
+import { LogoffComponent } from './account/logoff/logoff.component';
+import { HttpInterceptorProviders } from './http-interceptors';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { AuthenticationComponent } from './layout/authentication/authentication.
     LoginComponent,
     CreateAccountComponent,
     HomeComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    LogoffComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { AuthenticationComponent } from './layout/authentication/authentication.
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [HttpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

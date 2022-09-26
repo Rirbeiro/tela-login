@@ -7,6 +7,7 @@ import { AuthenticationComponent } from './layout/authentication/authentication.
 import { LoginComponent } from './account/login/login.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
 import { AuthGuard } from './account/shared/auth.guard';
+import { LogoffComponent } from './account/logoff/logoff.component';
 
 
 // Entra na rota vazia e olha primeiro o "canActivate", e verifica se pode entrar na rota "AuthGuard", senão consegue vai para próxima e mostra a tela de autenticação
@@ -28,7 +29,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'create-account', component: CreateAccountComponent },
-      { path: 'logoff', redirectTo: 'logoff' }
+      { path: 'logoff', component: LogoffComponent }
     ]
   }
 ];
