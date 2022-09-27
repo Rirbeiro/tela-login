@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   login = new Login();
   isConnected: boolean = true;
+  errorMessage: string = '';
 
   constructor(private accountService: AccountService, private router: Router) { }
 
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   async onSubmit() {
     try {
+
       const result = await this.accountService.login(this.login);
 
       if (result) {
@@ -29,10 +31,17 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['']);
       } else {
         this.isConnected = false;
+        this.ShowMessageDuringTime();
       }
-
     } catch (error) {
       console.log(error);
     }
+  }
+
+  private ShowMessageDuringTime() {
+    this.errorMessage = 'Falha na autenticação.';
+    setTimeout(() => {
+      this.isConnected = true;
+    }, 2000);
   }
 }

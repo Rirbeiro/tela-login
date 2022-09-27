@@ -1,5 +1,4 @@
-import { JsonPipe } from '@angular/common';
-import { HttpClient, JsonpInterceptor } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Account } from 'src/app/account';
 import { AppSettings } from 'src/app/appSettings';
@@ -9,6 +8,7 @@ import { Login } from 'src/app/login';
   providedIn: 'root'
 })
 export class AccountService {
+  static MockBackEnd: any;
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +26,6 @@ export class AccountService {
     return await this.http.post<Account>(`${AppSettings.API_ENDPOINT}/auth`, account).toPromise();
   }
 
-  getAuthorizationToken = () => window.localStorage.getItem('token');
+  public getAuthorizationToken = () => window.localStorage.getItem('token');
 
 }
