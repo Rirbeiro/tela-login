@@ -11,7 +11,7 @@ import { AccountService } from '../shared/account.service';
 export class LoginComponent implements OnInit {
 
   login = new Login();
-  error: boolean;
+  isConnected: boolean = true;
 
   constructor(private accountService: AccountService, private router: Router) { }
 
@@ -21,10 +21,15 @@ export class LoginComponent implements OnInit {
   async onSubmit() {
     try {
       const result = await this.accountService.login(this.login);
-      console.log(`Login efetuado: ${result}`);
 
-      //navega na rota vazia para cair na autenticação
-      this.router.navigate(['']);
+      if (result) {
+        console.log(`Login efetuado: ${result}`);
+        this.isConnected = true;
+        //navega na rota vazia para cair na autenticação
+        this.router.navigate(['']);
+      } else {
+        this.isConnected = false;
+      }
 
     } catch (error) {
       console.log(error);
